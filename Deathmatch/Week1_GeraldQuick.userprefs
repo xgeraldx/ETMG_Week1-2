@@ -1,0 +1,28 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/RPCFunctions.cs">
+    <Files>
+      <File FileName="Assets/scripts/QController.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/Networking.cs" Line="64" Column="3" />
+      <File FileName="Assets/scripts/NetworkCharacter.cs" Line="49" Column="75" />
+      <File FileName="Assets/Plugins/ThirdPersonController.js" Line="165" Column="6" />
+      <File FileName="Assets/scripts/GQController.cs" Line="190" Column="44" />
+      <File FileName="Assets/Standard Assets/Character Controllers/Sources/Scripts/ThirdPersonCamera.js" Line="212" Column="2" />
+      <File FileName="Assets/scripts/ThirdCam.cs" Line="158" Column="42" />
+      <File FileName="Assets/scripts/Player.cs" Line="19" Column="2" />
+      <File FileName="Assets/scripts/GameLogic.cs" Line="18" Column="56" />
+      <File FileName="Assets/scripts/RPCFunctions.cs" Line="29" Column="3" />
+      <File FileName="Assets/scripts/MainMenu/CamAnimScript.cs" Line="7" Column="4" />
+      <File FileName="Assets/scripts/MainMenu/LocationFunctions.cs" Line="63" Column="48" />
+      <File FileName="Assets/Plugins/SimpleJSON.cs" Line="1070" Column="2" />
+      <File FileName="Assets/Standard Assets (Mobile)/Scripts/CameraRelativeControl.js" Line="125" Column="2" />
+      <File FileName="Assets/scripts/Mobile/MobileControl.cs" Line="94" Column="44" />
+      <File FileName="Assets/ScifiEffects/Scripts/SFE_BulletController.js" Line="14" Column="1" />
+      <File FileName="Assets/scripts/BulletController.cs" Line="43" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

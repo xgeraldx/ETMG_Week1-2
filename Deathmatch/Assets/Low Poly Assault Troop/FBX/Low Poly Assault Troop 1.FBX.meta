@@ -1,0 +1,723 @@
+fileFormatVersion: 2
+guid: c7cfa23b412524a37aba16c81f457fe0
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Cyborg Ninja
+    100002: Cyborg Ninja Gun
+    100004: Head
+    100006: L-finger01
+    100008: L-finger02
+    100010: L-foot
+    100012: L-hand
+    100014: L-HandControl
+    100016: L-knee
+    100018: L-LegControl
+    100020: L-lowerarm
+    100022: L-thigh
+    100024: L-thumb01
+    100026: L-thumb02
+    100028: L-upperarm
+    100030: //RootNode
+    100032: Main
+    100034: Pelvis
+    100036: R-finger01
+    100038: R-finger02
+    100040: R-foot
+    100042: R-hand
+    100044: R-HandControl
+    100046: R-knee
+    100048: R-LegControl
+    100050: R-lowerarm
+    100052: R-thigh
+    100054: R-thumb01
+    100056: R-thumb02
+    100058: R-upperarm
+    100060: Shoulder
+    100062: Spine
+    400000: Cyborg Ninja
+    400002: Cyborg Ninja Gun
+    400004: Head
+    400006: L-finger01
+    400008: L-finger02
+    400010: L-foot
+    400012: L-hand
+    400014: L-HandControl
+    400016: L-knee
+    400018: L-LegControl
+    400020: L-lowerarm
+    400022: L-thigh
+    400024: L-thumb01
+    400026: L-thumb02
+    400028: L-upperarm
+    400030: //RootNode
+    400032: Main
+    400034: Pelvis
+    400036: R-finger01
+    400038: R-finger02
+    400040: R-foot
+    400042: R-hand
+    400044: R-HandControl
+    400046: R-knee
+    400048: R-LegControl
+    400050: R-lowerarm
+    400052: R-thigh
+    400054: R-thumb01
+    400056: R-thumb02
+    400058: R-upperarm
+    400060: Shoulder
+    400062: Spine
+    2300000: Cyborg Ninja Gun
+    3300000: Cyborg Ninja Gun
+    4300000: Cyborg Ninja Gun
+    4300002: Cyborg Ninja
+    7400000: idle
+    7400002: take damage
+    7400004: death
+    7400006: run
+    7400008: run, attack single shot
+    7400010: run, attack rapid fire
+    7400012: stand, attack single shot
+    7400014: stand, attack rapid fire
+    7400016: forward roll
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Cyborg Ninja
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: idle
+      takeName: Take 001
+      firstFrame: 10
+      lastFrame: 50
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: take damage
+      takeName: Take 001
+      firstFrame: 51
+      lastFrame: 65
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: death
+      takeName: Take 001
+      firstFrame: 71
+      lastFrame: 105
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: run
+      takeName: Take 001
+      firstFrame: 112
+      lastFrame: 129
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: run, attack single shot
+      takeName: Take 001
+      firstFrame: 132
+      lastFrame: 149
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: run, attack rapid fire
+      takeName: Take 001
+      firstFrame: 152
+      lastFrame: 169
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: stand, attack single shot
+      takeName: Take 001
+      firstFrame: 171
+      lastFrame: 185
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: stand, attack rapid fire
+      takeName: Take 001
+      firstFrame: 191
+      lastFrame: 200
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: forward roll
+      takeName: Take 001
+      firstFrame: 201
+      lastFrame: 240
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human:
+    - boneName: Pelvis
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L-thigh
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R-thigh
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L-knee
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R-knee
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L-foot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R-foot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Shoulder
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L-upperarm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R-upperarm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L-lowerarm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R-lowerarm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L-hand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R-hand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L-thumb01
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L-thumb02
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L-finger01
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L-finger02
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R-thumb01
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R-thumb02
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R-finger01
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R-finger02
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Low Poly Assault Troop 1(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Cyborg Ninja
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L-HandControl
+      position: {x: -.659905255, y: .73895514, z: -4.15561319e-09}
+      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L-LegControl
+      position: {x: -.150494471, y: .0501768105, z: .00138637063}
+      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Main
+      position: {x: 0, y: .461808294, z: 2.01862829e-08}
+      rotation: {x: 6.65790267e-08, y: -0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Pelvis
+      position: {x: -0, y: -.0714637712, z: 0}
+      rotation: {x: 2.17450292e-06, y: -2.26999146e-06, z: -.712443113, w: .701729953}
+      scale: {x: .99999994, y: .99999994, z: 1}
+      transformModified: 1
+    - name: L-thigh
+      position: {x: -.0311225504, y: -.150983393, z: -.00431598723}
+      rotation: {x: -.0136851203, y: .706976712, z: .707098186, w: .00297269225}
+      scale: {x: 1.00000024, y: .99999994, z: 1.00000012}
+      transformModified: 1
+    - name: L-knee
+      position: {x: -.201576933, y: -2.08616253e-08, z: 1.90734859e-08}
+      rotation: {x: 3.54709068e-10, y: -3.93322992e-08, z: .00900304224, w: .999959469}
+      scale: {x: .99999994, y: .99999994, z: 1}
+      transformModified: 1
+    - name: L-foot
+      position: {x: -.172055855, y: -2.96533109e-08, z: 9.53674295e-09}
+      rotation: {x: -1.49484762e-08, y: -1.51620032e-08, z: -.702074707, w: .712103307}
+      scale: {x: 1.00000024, y: 1.00000024, z: 1}
+      transformModified: 1
+    - name: R-thigh
+      position: {x: -.035644494, y: .147455364, z: -.00431785593}
+      rotation: {x: -.0136876591, y: .706976712, z: .707098186, w: .0029752308}
+      scale: {x: 1.00000036, y: .99999994, z: 1.00000012}
+      transformModified: 1
+    - name: R-knee
+      position: {x: -.201576889, y: -2.08616253e-08, z: 1.90734859e-08}
+      rotation: {x: 3.55819652e-10, y: -3.94290574e-08, z: .0090178214, w: .99995935}
+      scale: {x: .99999994, y: .99999994, z: 1}
+      transformModified: 1
+    - name: R-foot
+      position: {x: -.17205587, y: -2.98023224e-08, z: 9.53674295e-09}
+      rotation: {x: -1.49484816e-08, y: -1.51620085e-08, z: -.702074707, w: .712103307}
+      scale: {x: 1.00000024, y: 1.00000024, z: 1}
+      transformModified: 1
+    - name: Spine
+      position: {x: -.0887425989, y: -2.98023224e-08, z: 9.93777505e-10}
+      rotation: {x: -1.90710011e-06, y: -3.0796425e-08, z: .0161461961, w: .999869645}
+      scale: {x: 1.00000012, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: Shoulder
+      position: {x: -.235280722, y: 3.63588342e-08, z: 0}
+      rotation: {x: -8.93297738e-08, y: 9.66273617e-10, z: -.0169730391, w: .999855995}
+      scale: {x: .999999821, y: .99999994, z: .999999821}
+      transformModified: 1
+    - name: Head
+      position: {x: -.159995347, y: 1.19209287e-09, z: 1.68290537e-08}
+      rotation: {x: -1.61481939e-13, y: 3.55271368e-15, z: -9.31322575e-10, w: 1}
+      scale: {x: 1, y: 1, z: .99999994}
+      transformModified: 1
+    - name: L-upperarm
+      position: {x: -.0415231325, y: -.23969698, z: 6.10351549e-07}
+      rotation: {x: .489364266, y: .510414481, z: .522326052, w: .476629108}
+      scale: {x: 1.00000036, y: 1.00000024, z: 1.00000012}
+      transformModified: 1
+    - name: L-lowerarm
+      position: {x: -.203991175, y: 7.62939436e-08, z: 0}
+      rotation: {x: -7.60810928e-11, y: -5.58771962e-09, z: -.0240289047, w: .999711275}
+      scale: {x: 1.00000012, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: L-hand
+      position: {x: -.214903221, y: 5.32865499e-07, z: 0}
+      rotation: {x: 0, y: 0, z: -4.36557457e-11, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L-finger01
+      position: {x: -.131617576, y: -.00375596993, z: -.0282521807}
+      rotation: {x: .999731719, y: .00090640242, z: .023143081, w: -.000347548659}
+      scale: {x: .999999881, y: .999999583, z: 1.00000024}
+      transformModified: 1
+    - name: L-finger02
+      position: {x: -.0467139408, y: -1.75237645e-07, z: 0}
+      rotation: {x: 2.16284229e-06, y: .000102524893, z: .00215911609, w: .999997675}
+      scale: {x: 1, y: 1, z: 1.00000012}
+      transformModified: 1
+    - name: L-thumb01
+      position: {x: -.0938497111, y: .071866028, z: -.0108459471}
+      rotation: {x: .918313324, y: -.391074926, z: .056608621, w: .0235926621}
+      scale: {x: .999999881, y: .999999523, z: 1.00000024}
+      transformModified: 1
+    - name: L-thumb02
+      position: {x: -.0399494544, y: 3.81469718e-08, z: -7.62939436e-08}
+      rotation: {x: -.0269918106, y: -.0555611365, z: -.211388156, w: .97544837}
+      scale: {x: .99999994, y: .99999994, z: 1}
+      transformModified: 1
+    - name: R-upperarm
+      position: {x: -.0546813942, y: .230589181, z: -4.5776369e-07}
+      rotation: {x: .502544284, y: -.497442722, z: .515684545, w: -.483807325}
+      scale: {x: 1.00000036, y: 1.00000012, z: 1.00000012}
+      transformModified: 1
+    - name: R-lowerarm
+      position: {x: -.217138261, y: -5.96046434e-10, z: 7.62939436e-08}
+      rotation: {x: -8.68242012e-09, y: 2.38260469e-07, z: .0371486284, w: .999309778}
+      scale: {x: 1.00000012, y: 1.00000012, z: 1.00000012}
+      transformModified: 1
+    - name: R-hand
+      position: {x: -.215093687, y: 2.38418574e-09, z: -7.62939436e-08}
+      rotation: {x: 5.82076609e-11, y: 4.88229832e-18, z: 8.38772465e-08, w: 1}
+      scale: {x: .99999994, y: .99999994, z: 1}
+      transformModified: 1
+    - name: Cyborg Ninja Gun
+      position: {x: -.281861067, y: -.165303648, z: .0513626076}
+      rotation: {x: 7.07805228e-08, y: 3.72528874e-09, z: -9.43327727e-09, w: 1}
+      scale: {x: 1.00000024, y: .99999994, z: .999999881}
+      transformModified: 1
+    - name: R-finger01
+      position: {x: -.131367832, y: .0051241708, z: -.0205077361}
+      rotation: {x: .999719739, y: -.00125837559, z: .0236267354, w: .000852548692}
+      scale: {x: .99999994, y: .999999702, z: 1.00000012}
+      transformModified: 1
+    - name: R-finger02
+      position: {x: -.0477951057, y: -2.38418574e-09, z: 0}
+      rotation: {x: .00013871082, y: -.00719678542, z: .0192699172, w: .999788404}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R-thumb01
+      position: {x: -.0939574763, y: -.0728260279, z: -.0169702154}
+      rotation: {x: .922196925, y: .319820881, z: .0249797553, w: .215970919}
+      scale: {x: .999999821, y: .999999583, z: 1.00000024}
+      transformModified: 1
+    - name: R-thumb02
+      position: {x: -.038495101, y: 7.62939436e-08, z: -7.62939436e-08}
+      rotation: {x: -.187553748, y: -.0720966458, z: .128170356, w: .971183836}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R-HandControl
+      position: {x: .660310209, y: .746301651, z: 1.88061946e-07}
+      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R-LegControl
+      position: {x: .1479785, y: .0501768105, z: .00138637749}
+      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 3
+  userData: 
