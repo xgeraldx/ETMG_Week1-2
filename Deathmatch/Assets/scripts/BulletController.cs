@@ -10,6 +10,11 @@ public class BulletController : MonoBehaviour {
 	public GameObject[] detachOnDeath;
 	
 	void Start () {
+		if (muzzleFire)
+		{
+			Instantiate(muzzleFire, transform.position, transform.rotation);
+			//PhotonNetwork.Instantiate("purpleMuzzleFire",transform.position,transform.rotation,97);
+		}
 		rigidbody.AddForce(transform.forward * impulseForce, ForceMode.Impulse);
 		
 	}
@@ -20,6 +25,10 @@ public class BulletController : MonoBehaviour {
 	
 	void OnCollisionEnter(Collision collision) {
 		
+		//Instantiate(explosion, transform.position, transform.rotation);
+		//PhotonNetwork.Instantiate("purpleExplosion",transform.position,transform.rotation,98);
+		if(this.gameObject.GetPhotonView().isMine)
+			PhotonNetwork.Instantiate("purpleExplosion",transform.position,transform.rotation,100,null);
 		if (detachOnDeath.Length > 0) {
 			for(var i=0;i < detachOnDeath.Length; i++)
 			{
@@ -30,13 +39,22 @@ public class BulletController : MonoBehaviour {
 
 				//	PhotonNetwork.Destroy(detachOnDeath[i]);
 
-
+				//detachOnDeath[0].GetPhotonView().isMine
 				if(detachOnDeath[i] != null)
+				{
+
+					//PhotonNetwork.Destroy(detachOnDeath[i]);
+					if(this.gameObject.GetPhotonView().isMine)
+						GameObject.Destroy(detachOnDeath[i]);
+
+				}
 
 			}
 		}
-
-
+		if(this.gameObject.GetPhotonView().isMine)
+			GameObject.Destroy(this.gameObject);
+			//PhotonNetwork.Destroy(this.gameObject);
+			
 		
 	}
 }
