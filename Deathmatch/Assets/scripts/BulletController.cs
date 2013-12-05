@@ -10,7 +10,6 @@ public class BulletController : MonoBehaviour {
 	public GameObject[] detachOnDeath;
 	
 	void Start () {
-		if (muzzleFire) Instantiate(muzzleFire, transform.position, transform.rotation);
 		rigidbody.AddForce(transform.forward * impulseForce, ForceMode.Impulse);
 		
 	}
@@ -21,8 +20,6 @@ public class BulletController : MonoBehaviour {
 	
 	void OnCollisionEnter(Collision collision) {
 		
-		Instantiate(explosion, transform.position, transform.rotation);
-
 		if (detachOnDeath.Length > 0) {
 			for(var i=0;i < detachOnDeath.Length; i++)
 			{
@@ -35,12 +32,10 @@ public class BulletController : MonoBehaviour {
 
 
 				if(detachOnDeath[i] != null)
-					Destroy(detachOnDeath[i], 5);
 
 			}
 		}
 
-		Destroy(gameObject);
 
 		
 	}

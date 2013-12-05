@@ -156,7 +156,8 @@ public var jumpPoseAnimation : AnimationClip;
 
 					Debug.Log("shoot");
 					//PhotonNetwork.Instantiate("PurpleBullet",firePoint.transform.position,firePoint.transform.rotation,99);
-					Instantiate(DefaultProjectile,firePoint.transform.position+offset ,firePoint.transform.rotation);
+
+					//Instantiate(DefaultProjectile,firePoint.transform.position+offset ,firePoint.transform.rotation);
 				}else
 				{
 					_animation.Play(shootAnimation.name);
@@ -180,14 +181,17 @@ public var jumpPoseAnimation : AnimationClip;
 			
 			Debug.Log("shoot");
 			//PhotonNetwork.Instantiate("PurpleBullet",firePoint.transform.position,firePoint.transform.rotation,99);
-			PhotonNetwork.Instantiate("PurpleBullet",firePoint.transform.position ,transform.rotation, 0);
-
+			if(transform.parent.gameObject.GetPhotonView().isMine)
+				PhotonNetwork.Instantiate("PurpleBullet",firePoint.transform.position ,transform.rotation, 0);
+			//PhotonNetwork.InstantiateSceneObject("PurpleBullet",transform.position,transform.rotation,100,null);
 		}else
 		{
 			_animation.Play(shootAnimation.name);
 			//_characterState = CharacterState.Shoot;
 			//PhotonNetwork.Instantiate("PurpleBullet",firePoint.transform.position,firePoint.transform.rotation,99);
-			PhotonNetwork.Instantiate("PurpleBullet",rayCaster.transform.position,transform.rotation,0);
+			if(transform.parent.gameObject.GetPhotonView().isMine)
+				PhotonNetwork.Instantiate("PurpleBullet",rayCaster.transform.position,transform.rotation,0);
+			//PhotonNetwork.InstantiateSceneObject("PurpleBullet",transform.position,transform.rotation,100,null);
 		}
 
 	}
@@ -418,7 +422,7 @@ public var jumpPoseAnimation : AnimationClip;
 			{
 				if(coolDown <= 0.0f)
 				{
-					if(isControllable)
+					if(this.isControllable)
 					{
 						Shoot();
 						coolDown = .25f;
@@ -589,6 +593,7 @@ public var jumpPoseAnimation : AnimationClip;
 		{
 			_animation.Play(deadAnimation.name);
 			deadAnimationPlayed = true;
+			PhotonNetwork.RPC( transform.parent.GetComponent<PhotonView>(),"GameOver",PhotonTargets.All,null);
 		}
 		//this._animation.Play(deadAnimation.name);
 

@@ -62,6 +62,11 @@ public class LocationFunctions : MonoBehaviour {
 		{
 			Application.LoadLevel("AndroidNoMultiplayer");
 		}
+
+		if(Input.GetMouseButtonDown(0))
+		{
+			Application.LoadLevel("gameSceneMac");
+		}
 	}
 	void OnGUI()
 	{

@@ -34,6 +34,8 @@ public class NetworkCharacter : Photon.MonoBehaviour
 			GQController gq = GetComponentInChildren<GQController>();
 			Debug.Log("Player send: " + gq._characterState.ToString());
 			stream.SendNext((int)gq._characterState);
+			TextMesh tm = GetComponentInChildren<TextMesh>();
+			stream.SendNext((string)tm.text);
 			//MecanimTest mt = GetComponent<MecanimTest>();
 			//stream.SendNext((float)mt.speed);
 			//stream.SendNext((float)mt.strafe);
@@ -48,7 +50,8 @@ public class NetworkCharacter : Photon.MonoBehaviour
 
 			gq._characterState = (GQController.CharacterState)stream.ReceiveNext();
 			//Debug.Log("Network Client: " + gq.isControllable.ToString());
-			Debug.Log("Network: " + gq._characterState.ToString());
+			TextMesh tm = GetComponentInChildren<TextMesh>();
+			tm.text = (string)stream.ReceiveNext();
 			//MecanimTest mt = GetComponent<MecanimTest>();
 			//mt.speed = (float)stream.ReceiveNext();
 			//mt.strafe = (float)stream.ReceiveNext();
