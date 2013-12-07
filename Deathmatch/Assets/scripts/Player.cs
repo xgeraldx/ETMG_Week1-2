@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour {
+public class Player : Photon.MonoBehaviour {
 	public float health = 5f;
 	public GameObject playerrName;
 	public PhotonView myView;
@@ -23,7 +23,9 @@ public class Player : MonoBehaviour {
 		//Debug.Log(collision.gameObject.name);
 		if(collision.gameObject.name.Contains("Bullet"))
 		{
-			if(!gq.isDead)
+			PhotonView pv = gameObject.transform.parent.gameObject.GetPhotonView();
+			pv.RPC ("TakeDamage",PhotonTargets.All,null);
+			/*if(!gq.isDead)
 			{
 				//myView.RPC ("TakeDamage",PhotonNetwork.player,null);
 				health-=1.0f;
@@ -31,18 +33,20 @@ public class Player : MonoBehaviour {
 				{
 					gq.Dead();
 				}
-			}
+			}*/
 			//GameLogic.ScenePhotonView.RPC ("TakeDamage",PhotonNetwork.player,null);
 		}
 	}
 
+
 	void OnGUI()
 	{
-
-			GUILayout.BeginArea(new Rect(Screen.width - 100, 0, 100, 25));
-			GUILayout.Label("Health: " + health.ToString());
-			GUILayout.EndArea();
-
+		if(!transform.parent.gameObject.GetPhotonView().isMine)
+			return;
+		GUILayout.BeginArea(new Rect(Screen.width - 100, 0, 100, 25));
+		GUILayout.Label("Health: " + health.ToString());
+		GUILayout.EndArea();
+			
 	}
 	
 }

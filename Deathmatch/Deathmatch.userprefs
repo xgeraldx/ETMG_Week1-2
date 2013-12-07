@@ -1,20 +1,24 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/RPCFunctions.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/GQController.cs">
     <Files>
-      <File FileName="Assets/scripts/GQController.cs" Line="204" Column="4" />
+      <File FileName="Assets/scripts/GQController.cs" Line="584" Column="6" />
       <File FileName="Assets/scripts/Mobile/SmartFoxNetworking.cs" Line="1" Column="1" />
       <File FileName="Assets/scripts/BulletController.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/GameState.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/RPCFunctions.cs" Line="49" Column="26" />
-      <File FileName="Assets/scripts/Networking.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/GameState.cs" Line="18" Column="4" />
+      <File FileName="Assets/scripts/RPCFunctions.cs" Line="56" Column="6" />
+      <File FileName="Assets/scripts/Networking.cs" Line="129" Column="3" />
       <File FileName="Assets/scripts/MainMenu/LocationFunctions.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/NetworkCharacter.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/Player.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/GQController.cs" Line="204" Column="4" />
+      <File FileName="Assets/scripts/NetworkCharacter.cs" Line="57" Column="51" />
+      <File FileName="Assets/scripts/Player.cs" Line="40" Column="2" />
+      <File FileName="Assets/scripts/GQController.cs" Line="584" Column="6" />
       <File FileName="Assets/scripts/DestroyThisTimed.cs" Line="1" Column="1" />
       <File FileName="Assets/scripts/GameLogic.cs" Line="1" Column="1" />
       <File FileName="Assets/scripts/QController.cs" Line="1" Column="1" />
+      <File FileName="../../Downloads/shoot_src_rc1/SpawnPoint.cs" Line="26" Column="3" />
+      <File FileName="../../Downloads/shoot_src_rc1/NetworkScripts/NetworkManager.cs" Line="349" Column="3" />
+      <File FileName="Assets/scripts/SpawnPoint.cs" Line="16" Column="9" />
+      <File FileName="../../Downloads/shoot_src_rc1/Entities/Damageable.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -1,0 +1,93 @@
+-debug
+-target:library
+-nowarn:0169
+-out:'Temp/Assembly-CSharp.dll'
+-r:'/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandalonePlayer/Managed/UnityEngine.dll'
+-r:'Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll'
+-r:'Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll'
+-r:'Assets/Plugins/Photon3Unity3D.dll'
+-r:'Assets/Plugins/SmartFox2X.dll'
+-define:UNITY_STANDALONE_OSX
+-define:ENABLE_MICROPHONE
+-define:ENABLE_TEXTUREID_MAP
+-define:ENABLE_AUDIO_FMOD
+-define:UNITY_STANDALONE
+-define:ENABLE_MONO
+-define:ENABLE_SPRITES
+-define:ENABLE_TERRAIN
+-define:ENABLE_GENERICS
+-define:ENABLE_SUBSTANCE
+-define:INCLUDE_WP8SUPPORT
+-define:ENABLE_MOVIES
+-define:ENABLE_WWW
+-define:ENABLE_IMAGEEFFECTS
+-define:ENABLE_WEBCAM
+-define:INCLUDE_METROSUPPORT
+-define:RENDER_SOFTWARE_CURSOR
+-define:ENABLE_NETWORK
+-define:ENABLE_PHYSICS
+-define:ENABLE_CACHING
+-define:ENABLE_CLOTH
+-define:ENABLE_2D_PHYSICS
+-define:ENABLE_GAMECENTER
+-define:ENABLE_SHADOWS
+-define:ENABLE_AUDIO
+-define:ENABLE_NAVMESH_CARVING
+-define:ENABLE_DUCK_TYPING
+-define:ENABLE_SINGLE_INSTANCE_BUILD_SETTING
+-define:UNITY_4_3_0
+-define:UNITY_4_3
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/CustomTypes.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/Enums.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/Extensions.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/FriendInfo.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/LoadbalancingPeer.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/NetworkingPeer.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/PhotonClasses.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/PhotonHandler.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/PhotonLagSimulationGui.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/PhotonNetwork.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/PhotonPlayer.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/PhotonStatsGui.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/PhotonView.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/PingCloudRegions.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/RPC.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/Room.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/RoomInfo.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/RpcIndexComponent.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/ServerSettings.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/SocketUdp.cs'
+'Assets/Models/Photon Unity Networking/Plugins/PhotonNetwork/SocketUdpNativeDllImport.cs'
+'Assets/Models/Photon Unity Networking/UtilityScripts/ConnectAndJoinRandom.cs'
+'Assets/Models/Photon Unity Networking/UtilityScripts/InRoomChat.cs'
+'Assets/Models/Photon Unity Networking/UtilityScripts/InputToEvent.cs'
+'Assets/Models/Photon Unity Networking/UtilityScripts/ManualPhotonViewAllocator.cs'
+'Assets/Models/Photon Unity Networking/UtilityScripts/MoveByKeys.cs'
+'Assets/Models/Photon Unity Networking/UtilityScripts/OnAwakeUsePhotonView.cs'
+'Assets/Models/Photon Unity Networking/UtilityScripts/OnClickDestroy.cs'
+'Assets/Models/Photon Unity Networking/UtilityScripts/OnClickInstantiate.cs'
+'Assets/Models/Photon Unity Networking/UtilityScripts/OnClickLoadSomething.cs'
+'Assets/Models/Photon Unity Networking/UtilityScripts/PointedAtGameObjectInfo.cs'
+'Assets/Models/Photon Unity Networking/UtilityScripts/ServerTime.cs'
+'Assets/Models/Photon Unity Networking/UtilityScripts/SmoothSyncMovement.cs'
+'Assets/Models/Photon Unity Networking/UtilityScripts/TestDontDestroyOnLoad.cs'
+'Assets/Models/Photon Unity Networking/UtilityScripts/TimeKeeper.cs'
+'Assets/scripts/BulletController.cs'
+'Assets/scripts/DestroyThisTimed.cs'
+'Assets/scripts/GQController.cs'
+'Assets/scripts/GameLogic.cs'
+'Assets/scripts/GameState.cs'
+'Assets/scripts/MainMenu/CamAnimScript.cs'
+'Assets/scripts/MainMenu/LocationFunctions.cs'
+'Assets/scripts/MecanimTest.cs'
+'Assets/scripts/Mobile/MobileControl.cs'
+'Assets/scripts/Mobile/SmartFoxNetworking.cs'
+'Assets/scripts/NetworkCharacter.cs'
+'Assets/scripts/Networking.cs'
+'Assets/scripts/Player.cs'
+'Assets/scripts/QController.cs'
+'Assets/scripts/RPCFunctions.cs'
+'Assets/scripts/SpawnPoint.cs'
+'Assets/scripts/ThirdCam.cs'
+-r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/2.0/System.Runtime.Serialization.dll'
+-r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/2.0/System.Xml.Linq.dll'

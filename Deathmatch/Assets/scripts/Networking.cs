@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Networking : MonoBehaviour {
-	public GameObject[] SpawnPoints;
+	//public GameObject[] SpawnPoints;
 
-	private string playerName ="Player";
+	private string playerName ="";
 	private bool joinedLobby = false;
 	private bool joinedRoom = false;
 	private Rect windowRect = new Rect(Screen.width/2-60, Screen.height/2-75, 150, 150);
-	private Vector3 spawnPoint;
+	//private Vector3 spawnPoint;
 	private Quaternion spawnRot;
-	static bool[] spawnAvailable = {true,true};
+    List<SpawnPoint> spawnPoints;
+
 	void Awake()
 	{
 
@@ -29,13 +31,25 @@ public class Networking : MonoBehaviour {
 		playerName = GUI.TextField(new Rect(10,20,130,25),playerName);
 		if (GUI.Button(new Rect(10, 120, 130, 20), "Submit"))
 		{
+			if(playerName == "")
+				playerName = "Player" + Random.Range(0,20);
 			PhotonNetwork.playerName = playerName;
 			PhotonNetwork.JoinRandomRoom();
 		}
 		
 	}
+	static Networking _instance;
+	static public Networking Instance {
+		get { 
+			if(_instance==null) {
+				_instance = (Networking)FindObjectOfType(typeof(Networking));
+			}
+			return _instance;
+		}
+	}
 	// Use this for initialization
 	void Start () {
+		_instance = this;
 		joinedLobby = false;
 		joinedRoom = false;
 		if(!PhotonNetwork.connected)
@@ -60,59 +74,62 @@ public class Networking : MonoBehaviour {
 	{
 		PhotonNetwork.CreateRoom(null);
 	}
-	void FindSpawnPoint()
-	{
-		if(PhotonNetwork.playerList.Length == 1)
-		{
-			spawnAvailable[0] = false;
-			spawnPoint = SpawnPoints[0].transform.position;
-			spawnRot = SpawnPoints[0].transform.rotation;
-		}else
-		{
-			spawnAvailable[1] = false;
-			spawnPoint = SpawnPoints[1].transform.position;
-			spawnRot = SpawnPoints[1].transform.rotation;
-		}
 
-	}
 	void OnJoinedRoom()
 	{
 		joinedRoom = true;
-		FindSpawnPoint();
-		GameObject player = PhotonNetwork.Instantiate("PlayerControl",spawnPoint, spawnRot, 0);
+		SpawnPlayer();
+
+	}
+	void SpawnPlayer()
+	{
+		Quaternion spawnRot = Quaternion.Euler(0, Random.Range(0, 360), 0);
+		GameObject player = PhotonNetwork.Instantiate("PlayerControl",GetSpawnLocation(), spawnRot, 0);
 		GQController characterControl = player.GetComponentInChildren<GQController>();
 		//characterControl.enabled = true;
 		characterControl.isControllable = true;
 		Player p = player.GetComponentInChildren<Player>();
-		p.enabled = true;
+		//p.enabled = true;
 		TextMesh tm = player.GetComponentInChildren<TextMesh>();
 		tm.text = PhotonNetwork.playerName;
-
-
-		//RPCFunctions rpc = player.GetComponent<RPCFunctions>();
-		//rpc.enabled = true;
-		//CharacterController cc = player.GetComponentInChildren<CharacterController>();
-
-		//cc.enabled = true;
-
+		
 
 		Camera camera = player.GetComponentInChildren<Camera>();
-
+		
 		camera.enabled = true;
 		ThirdCam tc = player.GetComponentInChildren<ThirdCam>();
 		tc.enabled = true;
-		//NetworkCharacter nc = player.GetComponentInChildren<NetworkCharacter>();
-		//nc.enabled = true;
-		//PhotonView pv = player.GetPhotonView();
-		//pv.observed = nc;
-		//Debug.Log(pv.observed.name);
-		//MecanimTest mecanim = player.GetComponent<MecanimTest>();
-		//mecanim.enabled = true;
-		//Camera camera = player.GetComponentInChildren<Camera>();
-		//camera.enabled = true;
-		//CharacterControl controller = monster.GetComponent<CharacterControl>();
-		//controller.enabled = true;
-		//CharacterCamera camera = monster.GetComponent<CharacterCamera>();
-		//camera.enabled = true;
+	}
+
+	public void RegisterSpawnPoint(SpawnPoint sp) {
+		if(spawnPoints == null) {
+			spawnPoints = new List<SpawnPoint>();
+		}
+		spawnPoints.Add(sp);
+	}
+	Vector3 GetSpawnLocation() {
+		SpawnPoint sp = spawnPoints[Random.Range(0, spawnPoints.Count)];
+		while(!sp.IsClear()) {
+			sp = spawnPoints[Random.Range(0, spawnPoints.Count)];
+		}
+		Vector3 pos = sp.transform.position;
+		return pos;
+	}
+	IEnumerator DelayedPlayerSpawn(float delay) {
+
+
+		yield return new WaitForSeconds(delay);	// wait one frame
+
+		SpawnPlayer();
+	}
+	public void DestroyAndRespawn(GameObject go) {
+		// Only gets called by the owner the character (player or bot)
+		//Debug.Log("DestroyAndRespawn");
+
+		PhotonNetwork.Destroy(go);
+
+		StopCoroutine("DelayedPlayerSpawn");
+		StartCoroutine("DelayedPlayerSpawn", 3f );
+
 	}
 }

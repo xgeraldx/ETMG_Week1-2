@@ -16,17 +16,7 @@ public class RPCFunctions : MonoBehaviour {
 	void Update () {
 	
 	}
-	[RPC]
-	void TakeDamage()
-	{
-		p.health -= 1.0f;
-		if(p.health <= 0)
-		{
-			//GQController gq = GetComponentInChildren<GQController>();
-			//gq.isDead = true;
-			gq.Dead();
-		}
-	}
+
 
 	[RPC]
 	void GameOver()
@@ -53,9 +43,45 @@ public class RPCFunctions : MonoBehaviour {
 	}
 	void OnGUI()
 	{
+		/*if(gq.gameObject.transform.parent.gameObject.GetPhotonView().isMine)
+		{
+			if(gq.isDead && GameState.gameState != GameState.State.GameOver)
+			{
+				GUI.Box(new Rect(Screen.width/2 -75,Screen.height/2-75,150f,75f),"Respawn");
+				if(GUI.Button(new Rect(Screen.width/2 -65,Screen.height/2 -65,50f,25f),"Respawn"))
+				{
+					GameState.NextRound();
+					PhotonView pv = gq.gameObject.transform.parent.gameObject.GetPhotonView();
+					Networking.Instance.DestroyAndRespawn(pv.gameObject);
+				}
+			}
+		}*/
 		if(GameState.gameState == GameState.State.GameOver)
 		{
 			windowRect = GUI.Window(0, windowRect, GameOverWindow, "Game Over");
+		}
+	}
+	[RPC]
+	void PlayShootEffect()
+	{
+		AudioSource audio = GetComponentInChildren<AudioSource>();
+		audio.Play();
+	}
+	[RPC]
+	void TakeDamage()
+	{
+		if(!gameObject.GetPhotonView().isMine)
+			return;
+		GQController gq = GetComponentInChildren<GQController>();
+		Player p = GetComponentInChildren<Player>();
+		if(!gq.isDead)
+		{
+			p.health -= 1f;
+			if(p.health <= 0f)
+			{
+				
+				gq.Dead();
+			}
 		}
 	}
 	void GameOverWindow(int windowID)

@@ -17,6 +17,7 @@ public class GQController : MonoBehaviour {
 	public float runMaxAnimationSpeed = 1.0f;
 	public float jumpAnimationSpeed = 1.15f;
 	public float landAnimationSpeed = 1.0f;
+	public AudioClip ShootSound;
 	//public var characterCam : Camera;
 	private Animation _animation;
 	public float coolDown = 0f;
@@ -180,12 +181,13 @@ public var jumpPoseAnimation : AnimationClip;
 
 		if(_characterState == CharacterState.Idle || !this.IsMoving())
 		{
-			
-			Debug.Log("shoot");
+
+			gameObject.transform.parent.gameObject.GetPhotonView().RPC ("PlayShootEffect",PhotonTargets.All,null);
 			Instantiate(DefaultProjectile,firePoint.transform.position,controller.transform.rotation);
 
 		}else
 		{
+			gameObject.transform.parent.gameObject.GetPhotonView().RPC ("PlayShootEffect",PhotonTargets.All,null);
 			if(!_animation.IsPlaying(shootAnimation.name) && _animation.isPlaying)
 			{
 				_animation.Stop();
@@ -581,8 +583,10 @@ public var jumpPoseAnimation : AnimationClip;
 		{
 			_animation.Play(deadAnimation.name);
 			deadAnimationPlayed = true;
-			PhotonNetwork.RPC( transform.parent.GetComponent<PhotonView>(),"GameOver",PhotonTargets.All,null);
+			//if(GameState.round > GameState.NUMROUNDS)
+				PhotonNetwork.RPC( transform.parent.GetComponent<PhotonView>(),"GameOver",PhotonTargets.All,null);
 		}
 
 	}
+
 }
