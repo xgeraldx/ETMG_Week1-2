@@ -16,14 +16,10 @@ public class DestroyThisTimed : MonoBehaviour {
 	IEnumerator DestroyDelay()
 	{
 		yield return new WaitForSeconds(destroyTime);
-		if(this.gameObject.GetPhotonView().isMine)
-		{
+
 			if(gameObject != null)
-				if(PhotonNetwork.isMasterClient)
-					PhotonNetwork.Destroy(this.gameObject);
-				//PhotonNetwork.Destroy(gameObject);
-		}
-		//yield return 0;
+				Destroy(this.gameObject);
+				
 	}
 
 }

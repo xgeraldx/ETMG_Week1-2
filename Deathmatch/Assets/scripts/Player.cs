@@ -20,7 +20,7 @@ public class Player : MonoBehaviour {
 	void OnCollisionEnter(Collision collision)
 	{
 	    GQController gq = GetComponent<GQController>();
-		Debug.Log(collision.gameObject.name);
+		//Debug.Log(collision.gameObject.name);
 		if(collision.gameObject.name.Contains("Bullet"))
 		{
 			if(!gq.isDead)

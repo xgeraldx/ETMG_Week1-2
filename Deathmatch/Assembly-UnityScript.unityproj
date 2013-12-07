@@ -87,30 +87,28 @@
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Background.shader" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Transparent Vertex Color.shader" />
-     <None Include="Assets\Cartoon FX\Shaders (Mobile)\CFXM_MobileParticleAdd_Alpha8.shader" />
      <None Include="Assets\Plugins\Photon3Unity3D.xml" />
-     <None Include="Assets\Cartoon FX\CartoonFX2 Releases Notes.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Detail.shader" />
+     <None Include="Assets\scripts\Mobile\connectionConfig.xml" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
-     <None Include="Assets\Cartoon FX\Shaders\CFX2 Particle Alpha Blend Add.shader" />
      <None Include="Assets\ScifiEffects\Shaders\SFE_TransparentAntiRim.shader" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Light.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Reflective.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Particles Additive Culled.shader" />
-     <None Include="Assets\pipe_pack\readme.txt" />
-     <None Include="Assets\Cartoon FX\Demo\Assets\CFX_Demo_WaterWiggle.shader" />
+     <None Include="Assets\Models\pipe_pack\readme.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Vertex Colored.shader" />
-     <None Include="Assets\Low Poly Assault Troop\Read Me.txt" />
+     <None Include="Assets\Models\Low Poly Assault Troop\Read Me.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Only.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap AlphaTest.shader" />
-     <None Include="Assets\Cartoon FX\Shaders\CFX2 Particle Alpha Blend Tint.shader" />
-     <None Include="Assets\Photon Unity Networking\readme.txt" />
+     <None Include="Assets\Models\Photon Unity Networking\readme.txt" />
      <None Include="Assets\ScifiEffects\Shaders\SFE_TransparentRim.shader" />
-     <None Include="Assets\Cartoon FX\CartoonFX2 Readme.txt" />
      <None Include="Assets\Plugins\release_history.txt" />
-     <None Include="Assets\Photon Unity Networking\changelog.txt" />
+     <None Include="Assets\Models\Photon Unity Networking\changelog.txt" />
  <Reference Include="Assets\Plugins\Photon3Unity3D">
  <HintPath>Assets\Plugins\Photon3Unity3D.dll</HintPath>
+ </Reference>
+ <Reference Include="Assets\Plugins\SmartFox2X">
+ <HintPath>Assets\Plugins\SmartFox2X.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

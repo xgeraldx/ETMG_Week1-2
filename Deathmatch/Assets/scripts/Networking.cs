@@ -2,10 +2,15 @@
 using System.Collections;
 
 public class Networking : MonoBehaviour {
+	public GameObject[] SpawnPoints;
+
 	private string playerName ="Player";
 	private bool joinedLobby = false;
 	private bool joinedRoom = false;
 	private Rect windowRect = new Rect(Screen.width/2-60, Screen.height/2-75, 150, 150);
+	private Vector3 spawnPoint;
+	private Quaternion spawnRot;
+	static bool[] spawnAvailable = {true,true};
 	void Awake()
 	{
 
@@ -22,7 +27,7 @@ public class Networking : MonoBehaviour {
 	}
 	void DoMyWindow(int windowID) {
 		playerName = GUI.TextField(new Rect(10,20,130,25),playerName);
-		if (GUI.Button(new Rect(10, 50, 130, 20), "Submit"))
+		if (GUI.Button(new Rect(10, 120, 130, 20), "Submit"))
 		{
 			PhotonNetwork.playerName = playerName;
 			PhotonNetwork.JoinRandomRoom();
@@ -36,6 +41,7 @@ public class Networking : MonoBehaviour {
 		if(!PhotonNetwork.connected)
 		{
 			PhotonNetwork.ConnectUsingSettings("1.0");
+
 		}
 	}
 	
@@ -54,11 +60,26 @@ public class Networking : MonoBehaviour {
 	{
 		PhotonNetwork.CreateRoom(null);
 	}
+	void FindSpawnPoint()
+	{
+		if(PhotonNetwork.playerList.Length == 1)
+		{
+			spawnAvailable[0] = false;
+			spawnPoint = SpawnPoints[0].transform.position;
+			spawnRot = SpawnPoints[0].transform.rotation;
+		}else
+		{
+			spawnAvailable[1] = false;
+			spawnPoint = SpawnPoints[1].transform.position;
+			spawnRot = SpawnPoints[1].transform.rotation;
+		}
 
+	}
 	void OnJoinedRoom()
 	{
 		joinedRoom = true;
-		GameObject player = PhotonNetwork.Instantiate("PlayerControl",new Vector3(0f,2f,0f), Quaternion.identity, 0);
+		FindSpawnPoint();
+		GameObject player = PhotonNetwork.Instantiate("PlayerControl",spawnPoint, spawnRot, 0);
 		GQController characterControl = player.GetComponentInChildren<GQController>();
 		//characterControl.enabled = true;
 		characterControl.isControllable = true;
@@ -67,8 +88,9 @@ public class Networking : MonoBehaviour {
 		TextMesh tm = player.GetComponentInChildren<TextMesh>();
 		tm.text = PhotonNetwork.playerName;
 
-		RPCFunctions rpc = player.GetComponent<RPCFunctions>();
-		rpc.enabled = true;
+
+		//RPCFunctions rpc = player.GetComponent<RPCFunctions>();
+		//rpc.enabled = true;
 		//CharacterController cc = player.GetComponentInChildren<CharacterController>();
 
 		//cc.enabled = true;

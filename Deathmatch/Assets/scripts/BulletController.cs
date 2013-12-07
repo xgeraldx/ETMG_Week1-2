@@ -25,10 +25,8 @@ public class BulletController : MonoBehaviour {
 	
 	void OnCollisionEnter(Collision collision) {
 		
-		//Instantiate(explosion, transform.position, transform.rotation);
-		//PhotonNetwork.Instantiate("purpleExplosion",transform.position,transform.rotation,98);
-		if(this.gameObject.GetPhotonView().isMine)
-			PhotonNetwork.Instantiate("purpleExplosion",transform.position,transform.rotation,100,null);
+		Instantiate(explosion, transform.position, transform.rotation);
+
 		if (detachOnDeath.Length > 0) {
 			for(var i=0;i < detachOnDeath.Length; i++)
 			{
@@ -44,15 +42,15 @@ public class BulletController : MonoBehaviour {
 				{
 
 					//PhotonNetwork.Destroy(detachOnDeath[i]);
-					if(this.gameObject.GetPhotonView().isMine)
-						GameObject.Destroy(detachOnDeath[i]);
+
+					Destroy(detachOnDeath[i]);
 
 				}
 
 			}
 		}
-		if(this.gameObject.GetPhotonView().isMine)
-			GameObject.Destroy(this.gameObject);
+
+		Destroy(this.gameObject);
 			//PhotonNetwork.Destroy(this.gameObject);
 			
 		

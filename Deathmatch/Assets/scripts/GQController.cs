@@ -19,7 +19,7 @@ public class GQController : MonoBehaviour {
 	public float landAnimationSpeed = 1.0f;
 	//public var characterCam : Camera;
 	private Animation _animation;
-	private float coolDown = 0f;
+	public float coolDown = 0f;
 	private bool deadAnimationPlayed = false;
 	public enum CharacterState {
 		Idle = 0,
@@ -85,7 +85,7 @@ public class GQController : MonoBehaviour {
 	private float lastJumpButtonTime = -10.0f;
 	// Last time we performed a jump
 	private float lastJumpTime = -1.0f;
-	
+	public bool shooting = false;
 	
 	// the height we jumped from (Used to determine for how long to apply extra jump power after jumping.)
 	private float lastJumpStartHeight = 0.0f;
@@ -176,22 +176,24 @@ public var jumpPoseAnimation : AnimationClip;
 	}
 	void Shoot()
 	{
+		CharacterController controller  = GetComponent<CharacterController>();
+
 		if(_characterState == CharacterState.Idle || !this.IsMoving())
 		{
 			
 			Debug.Log("shoot");
-			//PhotonNetwork.Instantiate("PurpleBullet",firePoint.transform.position,firePoint.transform.rotation,99);
-			if(transform.parent.gameObject.GetPhotonView().isMine)
-				PhotonNetwork.Instantiate("PurpleBullet",firePoint.transform.position ,transform.rotation, 0);
-			//PhotonNetwork.InstantiateSceneObject("PurpleBullet",transform.position,transform.rotation,100,null);
+			Instantiate(DefaultProjectile,firePoint.transform.position,controller.transform.rotation);
+
 		}else
 		{
-			_animation.Play(shootAnimation.name);
-			//_characterState = CharacterState.Shoot;
-			//PhotonNetwork.Instantiate("PurpleBullet",firePoint.transform.position,firePoint.transform.rotation,99);
-			if(transform.parent.gameObject.GetPhotonView().isMine)
-				PhotonNetwork.Instantiate("PurpleBullet",rayCaster.transform.position,transform.rotation,0);
-			//PhotonNetwork.InstantiateSceneObject("PurpleBullet",transform.position,transform.rotation,100,null);
+			if(!_animation.IsPlaying(shootAnimation.name) && _animation.isPlaying)
+			{
+				_animation.Stop();
+				_animation[shootAnimation.name].speed = .25f;
+				_animation.Play(shootAnimation.name);
+			}
+			Instantiate(DefaultProjectile,firePoint.transform.position,controller.transform.rotation);
+
 		}
 
 	}
@@ -271,6 +273,7 @@ public var jumpPoseAnimation : AnimationClip;
 					// Choose target speed
 					//* We want to support analog input but make sure you cant walk faster diagonally than just forward or sideways
 				var targetSpeed = Mathf.Min(targetDirection.magnitude, 1.0f);
+			//var targetSpeed = 1.0f;
 					// Pick speed modifier
 				if (Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift))
 				{
@@ -298,19 +301,7 @@ public var jumpPoseAnimation : AnimationClip;
 				
 			
 		}
-		// In air controls
-			else
-			{
-			
-				// Lock camera while in air
-				if (jumping)
-					lockCameraTimer = 0.0f;
-					
-				if (isMoving)
-					inAirVelocity += targetDirection.normalized * Time.deltaTime * inAirControlAcceleration;
 
-
-			}
 		
 
 		
@@ -377,13 +368,6 @@ public var jumpPoseAnimation : AnimationClip;
 	}
 	
 	void Update() {
-		
-		/*if (!isControllable)
-		{
-			// kill all inputs if not controllable.
-			Input.ResetInputAxes();
-		}
-		*/
 
 		if(_characterState != CharacterState.Dead)
 		{
@@ -396,6 +380,7 @@ public var jumpPoseAnimation : AnimationClip;
 
 			if(coolDown > 0.0f)
 			{
+				this.shooting = false;
 				coolDown -= Time.deltaTime;
 			}
 			// Apply gravity
@@ -418,21 +403,28 @@ public var jumpPoseAnimation : AnimationClip;
 				// Move the controller
 
 				collisionFlags = controller.Move(movement);
-			if(Input.GetKey(KeyCode.Space))
+			if(Input.GetKeyUp(KeyCode.Space))
+			{
+				this.shooting = false;
+				
+			}
+			if(Input.GetKeyDown(KeyCode.Space))
 			{
 				if(coolDown <= 0.0f)
 				{
 					if(this.isControllable)
 					{
+						this.shooting = true;
 						Shoot();
 						coolDown = .25f;
-					}/*else
+					}else
 					{
-						_characterState = CharacterState.Shoot;
-					}*/
+						this.shooting = true;
+					}
 				}
 				
 			}
+
 			// ANIMATION sector
 			if(_animation) {
 				if(_characterState == CharacterState.Jumping) 
@@ -459,11 +451,7 @@ public var jumpPoseAnimation : AnimationClip;
 					}
 					else 
 					{
-						/*if(_characterState == CharacterState.Shoot)
-						{
-							Instantiate(DefaultProjectile,firePoint.transform.position ,transform.rotation);
-							_characterState = CharacterState.Idle;
-						}*/
+
 						if(_characterState == CharacterState.Idle)
 						{
 							_animation.CrossFade(idleAnimation.name);
@@ -486,7 +474,7 @@ public var jumpPoseAnimation : AnimationClip;
 							_animation[deadAnimation.name].wrapMode = WrapMode.Once;
 							_animation.Play (deadAnimation.name);
 						}
-						Debug.Log(controller.velocity.sqrMagnitude);	
+
 					}
 				}
 			}
@@ -595,7 +583,6 @@ public var jumpPoseAnimation : AnimationClip;
 			deadAnimationPlayed = true;
 			PhotonNetwork.RPC( transform.parent.GetComponent<PhotonView>(),"GameOver",PhotonTargets.All,null);
 		}
-		//this._animation.Play(deadAnimation.name);
 
 	}
 }
