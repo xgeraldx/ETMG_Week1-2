@@ -3,20 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Networking : MonoBehaviour {
-	//public GameObject[] SpawnPoints;
 
 	private string playerName ="";
 	private bool joinedLobby = false;
 	private bool joinedRoom = false;
 	private Rect windowRect = new Rect(Screen.width/2-60, Screen.height/2-75, 150, 150);
-	//private Vector3 spawnPoint;
+
 	private Quaternion spawnRot;
     List<SpawnPoint> spawnPoints;
 
-	void Awake()
-	{
-
-	}
 
 	void OnGUI()
 	{
@@ -38,6 +33,7 @@ public class Networking : MonoBehaviour {
 		}
 		
 	}
+
 	static Networking _instance;
 	static public Networking Instance {
 		get { 
@@ -67,7 +63,7 @@ public class Networking : MonoBehaviour {
 	void OnJoinedLobby()
 	{
 		joinedLobby = true;
-		//PhotonNetwork.JoinRandomRoom();
+
 	}
 
 	void OnPhotonRandomJoinFailed()
@@ -86,10 +82,10 @@ public class Networking : MonoBehaviour {
 		Quaternion spawnRot = Quaternion.Euler(0, Random.Range(0, 360), 0);
 		GameObject player = PhotonNetwork.Instantiate("PlayerControl",GetSpawnLocation(), spawnRot, 0);
 		GQController characterControl = player.GetComponentInChildren<GQController>();
-		//characterControl.enabled = true;
+
 		characterControl.isControllable = true;
 		Player p = player.GetComponentInChildren<Player>();
-		//p.enabled = true;
+
 		TextMesh tm = player.GetComponentInChildren<TextMesh>();
 		tm.text = PhotonNetwork.playerName;
 		

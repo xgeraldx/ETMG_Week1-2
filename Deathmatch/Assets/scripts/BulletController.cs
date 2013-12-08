@@ -13,7 +13,7 @@ public class BulletController : MonoBehaviour {
 		if (muzzleFire)
 		{
 			Instantiate(muzzleFire, transform.position, transform.rotation);
-			//PhotonNetwork.Instantiate("purpleMuzzleFire",transform.position,transform.rotation,97);
+
 		}
 		rigidbody.AddForce(transform.forward * impulseForce, ForceMode.Impulse);
 		
@@ -35,24 +35,16 @@ public class BulletController : MonoBehaviour {
 				PS = detachOnDeath[i].GetComponent<ParticleSystem>();
 				PS.enableEmission=false;
 
-				//	PhotonNetwork.Destroy(detachOnDeath[i]);
 
-				//detachOnDeath[0].GetPhotonView().isMine
 				if(detachOnDeath[i] != null)
 				{
-
-					//PhotonNetwork.Destroy(detachOnDeath[i]);
-
 					Destroy(detachOnDeath[i]);
-
 				}
 
 			}
 		}
 
 		Destroy(this.gameObject);
-			//PhotonNetwork.Destroy(this.gameObject);
 			
-		
 	}
 }

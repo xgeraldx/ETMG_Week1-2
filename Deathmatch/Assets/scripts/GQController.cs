@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class GQController : MonoBehaviour {
+	#region Global Variables
 	public Transform firePoint;
 	public Transform rayCaster;
 	public GameObject DefaultProjectile;
@@ -18,10 +19,8 @@ public class GQController : MonoBehaviour {
 	public float jumpAnimationSpeed = 1.15f;
 	public float landAnimationSpeed = 1.0f;
 	public AudioClip ShootSound;
-	//public var characterCam : Camera;
-	private Animation _animation;
 	public float coolDown = 0f;
-	private bool deadAnimationPlayed = false;
+
 	public enum CharacterState {
 		Idle = 0,
 		Walking = 1,
@@ -31,7 +30,6 @@ public class GQController : MonoBehaviour {
 		Shoot = 5,
 		Dead = 6,
 	}
-	
 	public CharacterState _characterState;
 	
 	// The speed when walking
@@ -54,7 +52,16 @@ public class GQController : MonoBehaviour {
 	public float trotAfterSeconds = 3.0f;
 	
 	public bool canJump = true;
-	
+	public bool shooting = false;
+	public bool isControllable = false;
+
+	#endregion
+
+	#region Private Variables
+	private Animation _animation;
+
+	private bool deadAnimationPlayed = false;
+
 	private float jumpRepeatTime = 0.05f;
 	private float jumpTimeout = 0.15f;
 	private float groundedTimeout = 0.25f;
@@ -86,8 +93,7 @@ public class GQController : MonoBehaviour {
 	private float lastJumpButtonTime = -10.0f;
 	// Last time we performed a jump
 	private float lastJumpTime = -1.0f;
-	public bool shooting = false;
-	
+
 	// the height we jumped from (Used to determine for how long to apply extra jump power after jumping.)
 	private float lastJumpStartHeight = 0.0f;
 	
@@ -95,10 +101,9 @@ public class GQController : MonoBehaviour {
 	private Vector3 inAirVelocity = Vector3.zero;
 	
 	private float lastGroundedTime = 0.0f;
+	#endregion
 	
-	
-	public bool isControllable = false;
-	
+
 	void Awake ()
 	{
 		if(this.isControllable && !isDead)
@@ -131,7 +136,8 @@ public var jumpPoseAnimation : AnimationClip;
 			_animation = null;
 			Debug.Log("No jump animation found and the character has canJump enabled. Turning off animations.");
 		}
-		
+
+		_animation[shootAnimation.name].speed = 1f;
 	}
 	
 	void CheckShoot()
@@ -175,6 +181,7 @@ public var jumpPoseAnimation : AnimationClip;
 		}
 		
 	}
+
 	void Shoot()
 	{
 		CharacterController controller  = GetComponent<CharacterController>();
@@ -188,10 +195,9 @@ public var jumpPoseAnimation : AnimationClip;
 		}else
 		{
 			gameObject.transform.parent.gameObject.GetPhotonView().RPC ("PlayShootEffect",PhotonTargets.All,null);
-			if(!_animation.IsPlaying(shootAnimation.name) && _animation.isPlaying)
+			if(!_animation.IsPlaying(shootAnimation.name))
 			{
-				_animation.Stop();
-				_animation[shootAnimation.name].speed = .25f;
+
 				_animation.Play(shootAnimation.name);
 			}
 			Instantiate(DefaultProjectile,firePoint.transform.position,controller.transform.rotation);
@@ -199,115 +205,109 @@ public var jumpPoseAnimation : AnimationClip;
 		}
 
 	}
+
 	void UpdateSmoothedMovementDirection ()
 	{
-		//var cameraTransform = Camera.main.transform;
 
-			Transform cameraTransform = gameObject.transform.parent.GetComponentInChildren<Camera>().transform;
-			bool grounded = IsGrounded();
+
+		Transform cameraTransform = gameObject.transform.parent.GetComponentInChildren<Camera>().transform;
+		bool grounded = IsGrounded();
 			
 			// Forward vector relative to the camera along the x-z plane	
-			var forward = cameraTransform.TransformDirection(Vector3.forward);
-			forward.y = 0f;
-			forward = forward.normalized;
+		var forward = cameraTransform.TransformDirection(Vector3.forward);
+		forward.y = 0f;
+		forward = forward.normalized;
 			
 			// Right vector relative to the camera
 			// Always orthogonal to the forward vector
-			Vector3 right = new Vector3(forward.z, 0f, -forward.x);
+		Vector3 right = new Vector3(forward.z, 0f, -forward.x);
 			
-			float v = 0f;
-			float h = 0f;
+		float v = 0f;
+		float h = 0f;
 			
-			if(this.isControllable && !isDead)
-			{
-				v = Input.GetAxisRaw("Vertical");
-				h = Input.GetAxisRaw("Horizontal");
-			}
+		if(this.isControllable && !isDead)
+		{
+			v = Input.GetAxisRaw("Vertical");
+			h = Input.GetAxisRaw("Horizontal");
+		}
 			// Are we moving backwards or looking backwards
-			if (v < -0.2)
-				movingBack = true;
-			else
-				movingBack = false;
+		if (v < -0.2)
+			movingBack = true;
+		else
+			movingBack = false;
 
 			// Target direction relative to the camera
-			var targetDirection = h * right + v * forward;
+		var targetDirection = h * right + v * forward;
 
 			// Grounded controls
-			if (grounded )
-			{
-				bool wasMoving = isMoving;
-				isMoving = Mathf.Abs (h) > 0.1 || Mathf.Abs (v) > 0.1;
+		if (grounded )
+		{
+			bool wasMoving = isMoving;
+			isMoving = Mathf.Abs (h) > 0.1 || Mathf.Abs (v) > 0.1;
 				
 				
 				// Lock camera for short period when transitioning moving & standing still
-				lockCameraTimer += Time.deltaTime;
-				if (isMoving != wasMoving)
-					lockCameraTimer = 0.0f;
+			lockCameraTimer += Time.deltaTime;
+			if (isMoving != wasMoving)
+				lockCameraTimer = 0.0f;
 				
 				// We store speed and direction seperately,
 				// so that when the character stands still we still have a valid forward direction
 				// moveDirection is always normalized, and we only update it if there is user input.
-				if (targetDirection != Vector3.zero)
-				{
+			if (targetDirection != Vector3.zero)
+			{
 					// If we are really slow, just snap to the target direction
-					if (moveSpeed < walkSpeed * 0.9f && grounded)
-					{
-						moveDirection = targetDirection.normalized;
-					}
-					// Otherwise smoothly turn towards it
-					else
-					{
-						moveDirection = Vector3.RotateTowards(moveDirection, targetDirection, rotateSpeed * Mathf.Deg2Rad * Time.deltaTime, 1000);
-						
-						moveDirection = moveDirection.normalized;
-					}
-
-
+				if (moveSpeed < walkSpeed * 0.9f && grounded)
+				{
+					moveDirection = targetDirection.normalized;
 				}
+					// Otherwise smoothly turn towards it
+				else
+				{
+					moveDirection = Vector3.RotateTowards(moveDirection, targetDirection, rotateSpeed * Mathf.Deg2Rad * Time.deltaTime, 1000);
+						
+					moveDirection = moveDirection.normalized;
+				}
+
+
+			}
 				
 				
-				if(_characterState != CharacterState.Dead)
-					_characterState = CharacterState.Idle;
+			if(_characterState != CharacterState.Dead)
+				_characterState = CharacterState.Idle;
 
 					// Smooth the speed based on the current target direction
-				var curSmooth = speedSmoothing * Time.deltaTime;
+			var curSmooth = speedSmoothing * Time.deltaTime;
 					
 					// Choose target speed
 					//* We want to support analog input but make sure you cant walk faster diagonally than just forward or sideways
-				var targetSpeed = Mathf.Min(targetDirection.magnitude, 1.0f);
+			var targetSpeed = Mathf.Min(targetDirection.magnitude, 1.0f);
 			//var targetSpeed = 1.0f;
 					// Pick speed modifier
-				if (Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift))
-				{
-					targetSpeed *= runSpeed;
-					_characterState = CharacterState.Running;
-				}
-				else if (Time.time - trotAfterSeconds > walkTimeStart)
-				{
-					targetSpeed *= trotSpeed;
-					_characterState = CharacterState.Trotting;
-				}
-				else
-				{
-					targetSpeed *= walkSpeed;
-					_characterState = CharacterState.Walking;
-				}
+			if (Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift))
+			{
+				targetSpeed *= runSpeed;
+				_characterState = CharacterState.Running;
+			}
+			else if (Time.time - trotAfterSeconds > walkTimeStart)
+			{
+				targetSpeed *= trotSpeed;
+				_characterState = CharacterState.Trotting;
+			}
+			else
+			{
+				targetSpeed *= walkSpeed;
+				_characterState = CharacterState.Walking;
+			}
 					
-				moveSpeed = Mathf.Lerp(moveSpeed, targetSpeed, curSmooth);
+			moveSpeed = Mathf.Lerp(moveSpeed, targetSpeed, curSmooth);
 					
 				// Reset walk time start when we slow down
-				if (moveSpeed < walkSpeed * 0.3f)
-					walkTimeStart = Time.time;
-
+			if (moveSpeed < walkSpeed * 0.3f)
+				walkTimeStart = Time.time;
 				
-				
-			
 		}
 
-		
-
-		
-		
 	}
 	
 	
@@ -370,7 +370,7 @@ public var jumpPoseAnimation : AnimationClip;
 	}
 	
 	void Update() {
-
+		//Make sure player is not dead 
 		if(_characterState != CharacterState.Dead)
 		{
 			if (isControllable && Input.GetButtonDown ("Jump"))
@@ -385,31 +385,29 @@ public var jumpPoseAnimation : AnimationClip;
 				this.shooting = false;
 				coolDown -= Time.deltaTime;
 			}
-			// Apply gravity
-			// - extra power jump modifies gravity
-			// - controlledDescent mode modifies gravity
 
-
-				CharacterController controller  = GetComponent<CharacterController>();
-				Vector3 movement = Vector3.zero;
-				ApplyGravity ();
+			CharacterController controller  = GetComponent<CharacterController>();
+			Vector3 movement = Vector3.zero;
+			ApplyGravity ();
 				
-				// Apply jumping logic
-				ApplyJumping ();
-				if(isControllable)
-			 	{
-					// Calculate actual motion
-					movement = moveDirection * moveSpeed + new Vector3 (0, verticalSpeed, 0) + inAirVelocity;
-					movement *= Time.deltaTime;
-				}
-				// Move the controller
+			// Apply jumping logic
+			ApplyJumping ();
 
-				collisionFlags = controller.Move(movement);
+			if(isControllable)
+			 {
+				// Calculate actual motion
+				movement = moveDirection * moveSpeed + new Vector3 (0, verticalSpeed, 0) + inAirVelocity;
+				movement *= Time.deltaTime;
+			}
+
+			// Move the controller
+			collisionFlags = controller.Move(movement);
 			if(Input.GetKeyUp(KeyCode.Space))
 			{
 				this.shooting = false;
 				
 			}
+
 			if(Input.GetKeyDown(KeyCode.Space))
 			{
 				if(coolDown <= 0.0f)
@@ -453,19 +451,18 @@ public var jumpPoseAnimation : AnimationClip;
 					}
 					else 
 					{
-
 						if(_characterState == CharacterState.Idle)
 						{
 							_animation.CrossFade(idleAnimation.name);
 						}
 						else if(_characterState == CharacterState.Running) {
 							if(isControllable) _animation[runAnimation.name].speed = Mathf.Clamp(controller.velocity.magnitude, 0.0f, runMaxAnimationSpeed);
-							_animation.CrossFade(runAnimation.name);	
+							if(!_animation.IsPlaying(shootAnimation.name)) _animation.CrossFade(runAnimation.name);	
 						}
 
 						else if(_characterState == CharacterState.Trotting) {
 							if(isControllable) _animation[walkAnimation.name].speed = Mathf.Clamp(controller.velocity.magnitude, 0.0f, trotMaxAnimationSpeed);
-							_animation.CrossFade(walkAnimation.name);	
+							if(!_animation.IsPlaying(shootAnimation.name))_animation.CrossFade(walkAnimation.name);	
 						}
 						else if(_characterState == CharacterState.Walking) {
 							if(isControllable) _animation[walkAnimation.name].speed = Mathf.Clamp(controller.velocity.magnitude, 0.0f, walkMaxAnimationSpeed);
@@ -491,13 +488,12 @@ public var jumpPoseAnimation : AnimationClip;
 			}	
 			else
 			{
-
-					Vector3 xzMove = movement;
-					xzMove.y = 0f;
-					if (xzMove.sqrMagnitude > 0.001f)
-					{
-						transform.rotation = Quaternion.LookRotation(xzMove);
-					}
+				Vector3 xzMove = movement;
+				xzMove.y = 0f;
+				if (xzMove.sqrMagnitude > 0.001f)
+				{
+					transform.rotation = Quaternion.LookRotation(xzMove);
+				}
 
 			}	
 			
@@ -576,7 +572,6 @@ public var jumpPoseAnimation : AnimationClip;
 
 	public void Dead()
 	{
-
 		this.isDead = true;
 		this._characterState = CharacterState.Dead;
 		if(!deadAnimationPlayed)

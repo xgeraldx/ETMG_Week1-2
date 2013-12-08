@@ -11,8 +11,10 @@ public class DestroyThisTimed : MonoBehaviour {
 
 		StartCoroutine("DestroyDelay");
 	}
+
 	void Update () {
 	}
+
 	IEnumerator DestroyDelay()
 	{
 		yield return new WaitForSeconds(destroyTime);

@@ -23,6 +23,9 @@ public class Player : Photon.MonoBehaviour {
 		//Debug.Log(collision.gameObject.name);
 		if(collision.gameObject.name.Contains("Bullet"))
 		{
+
+			if(!PhotonNetwork.player.isLocal)
+				return;
 			PhotonView pv = gameObject.transform.parent.gameObject.GetPhotonView();
 			pv.RPC ("TakeDamage",PhotonTargets.All,null);
 			/*if(!gq.isDead)
@@ -34,7 +37,7 @@ public class Player : Photon.MonoBehaviour {
 					gq.Dead();
 				}
 			}*/
-			//GameLogic.ScenePhotonView.RPC ("TakeDamage",PhotonNetwork.player,null);
+
 		}
 	}
 

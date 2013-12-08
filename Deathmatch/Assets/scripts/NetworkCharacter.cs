@@ -10,7 +10,7 @@ public class NetworkCharacter : Photon.MonoBehaviour
 
 	void Start()
 	{
-		//pv = transform.parent.GetComponent<PhotonView>();
+
 	}
 	// Update is called once per frame
 	void Update()
@@ -22,13 +22,8 @@ public class NetworkCharacter : Photon.MonoBehaviour
 			transform.GetChild(1).transform.position = Vector3.Lerp(transform.GetChild(1).transform.position, this.correctPlayerPos, Time.deltaTime * 2);
 			transform.GetChild(1).transform.rotation = Quaternion.Lerp(transform.GetChild(1).transform.rotation, this.correctPlayerRot, Time.deltaTime * 2);
 
-				//Debug.Log(gq.shooting);
-				//string status = "Position: " + position.ToString() + " Rotation: " + rotation.ToString();
-				//Debug.Log(status);
-				
-
 		}
-		//Debug.Log("me");
+
 	}
 
 	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -39,25 +34,21 @@ public class NetworkCharacter : Photon.MonoBehaviour
 			stream.SendNext(transform.GetChild(1).transform.position);
 			stream.SendNext(transform.GetChild (1).transform.rotation);
 			GQController gq = GetComponentInChildren<GQController>();
-			//Debug.Log("Player send: " + gq._characterState.ToString());
 
 			stream.SendNext((int)gq._characterState);
 			TextMesh tm = GetComponentInChildren<TextMesh>();
 			stream.SendNext((string)tm.text);
 			if(gq.shooting)
 			{
-
 				stream.SendNext((int)1);
 			}else
 			{
-
 				stream.SendNext((int)0);
 			}
 
 			stream.SendNext(gq.firePoint.transform.position);
 
 			stream.SendNext(gq.firePoint.transform.rotation);
-			//stream.SendNext((int)gq.gameObject.GetComponent<Player>().health);
 
 		}
 		else
@@ -68,7 +59,7 @@ public class NetworkCharacter : Photon.MonoBehaviour
 			GQController gq = GetComponentInChildren<GQController>();
 			PhotonView pv = GetComponent<PhotonView>();
 			gq._characterState = (GQController.CharacterState)stream.ReceiveNext();
-			//Debug.Log("Network Client: " + gq.isControllable.ToString());
+
 			TextMesh tm = GetComponentInChildren<TextMesh>();
 			tm.text = (string)stream.ReceiveNext();
 			if((int)stream.ReceiveNext() == 0)
@@ -76,15 +67,14 @@ public class NetworkCharacter : Photon.MonoBehaviour
 				gq.shooting = false;
 			}else
 			{
-			
 				gq.shooting = true;
 			}
-			//gq.shooting = (int)stream.ReceiveNext();
+
 			projectilePosition = (Vector3)stream.ReceiveNext();
 			projectileRotation = (Quaternion)stream.ReceiveNext();
-			//gq.gameObject.GetComponent<Player>().health = (int)stream.ReceiveNext();
+
 			if(gq.shooting)
-				photonView.RPC("RemotePlayerShoot",PhotonNetwork.player ,projectilePosition,projectileRotation);
+				photonView.RPC("RemotePlayerShoot",PhotonNetwork.player,projectilePosition,projectileRotation);
 		}
 	}
 }
